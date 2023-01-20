@@ -1,4 +1,4 @@
-function getData(){
+function ggetData(){
     const name = prompt('Qual seu nome?');
 
     return {name: name}

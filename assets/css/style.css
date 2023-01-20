@@ -7,9 +7,11 @@
 :root{
     --hdrColor: #FFF;
     --bgColor: #F3F3F3;
-    --enterMsg: #DCDCDC;
+    --statusMsg: #DCDCDC;
     --pvtMsg: #FBDEDE;
+    --toAllMsg: #FFF;
     --text: #000;
+    --hourColor: #AAA;
 }
 body{
     background-color: var(--bgColor);
@@ -51,8 +53,34 @@ header .container{
 
 
 
-
-
+.chat{
+    margin-top: 106px;
+    width: 100%;
+}
+li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    height: 40px;
+}
+.statusMsg{
+    background-color: var(--statusMsg);
+}
+.toAllMsg{
+    background-color: var(--toAllMsg);
+}
+.pvtMsg{
+    background-color: var(--pvtMsg);
+}
+.hour{
+    margin: 0 5px;
+    font-size: 14px;
+    color: var(--hourColor);
+}
+.name{
+    color: var(--text);
+    font-weight: 700;
+}
 
 footer{
     position: fixed;
