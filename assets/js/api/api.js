@@ -1,50 +1,51 @@
-import { getData } from '../functions/functions.js';
+import { getData } from '../helpers/functions.js';
+import { renderMsgs } from '../renderHtml/insertData.js';
 
 const BASE = "https://mock-api.driven.com.br/api/v6/uol";
 
 
-let obj;
+let user;
 
 const apiFunc = {
 
     userLogin: () => {
-        obj = getData();
+        user = getData();
         
         axios
-        .post(`${BASE}/participants`, obj)
+        .post(`${BASE}/participants`, user)
         .then( () => apiFunc.viewMsgs() )
         .catch( (e) => console.log(e) ); //descobrir qual tipo de erro e tratar
     },
 
-    keepLogedIn: () => {
+    keepLoggedIn: () => {
         axios
-        .post(`${BASE}/status`, obj)
-        .then(()=>console.log('manteu'))
-        .catch();
+        .post(`${BASE}/status`, user)
+        .catch(); // se o usuario ficar offline descobrir o tipo de erro e tratar.
     },
 
     viewMsgs: () => {
         axios
         .get(`${BASE}/messages`)
-        .then(seeMsgSuccess)
-        .catch(seeMsgFail);
+        .then(renderMsgs)
+        .catch(seeMsgFail); // descobrir o tipo de erro e tratar. 
     },
 
 }
 
-function seeMsgSuccess(response){
-    console.log(response)
-}
 
 function seeMsgFail(response){
     console.log(response)
 }
 
-const holdLogin = () => setInterval(apiFunc.keepLogedIn, 5000);
+function holdLogin (){
+    const timeToConfirmStatus = 5000; 
+    setInterval(apiFunc.keepLoggedIn, timeToConfirmStatus);
+
+}
 
 
 
 apiFunc.userLogin();
 holdLogin();
 
-export {};
+export { user };

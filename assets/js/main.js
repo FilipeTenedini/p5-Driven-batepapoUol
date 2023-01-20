@@ -1,2 +1,3 @@
 import {} from './api/api.js';
-import {} from './functions/functions.js';
+import {} from './helpers/functions.js';
+import {} from './renderHtml/insertData.js';
