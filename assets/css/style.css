@@ -53,8 +53,8 @@ header .container{
 
 
 
-.chat{
-    margin-top: 106px;
+.chat ul{
+    margin: 106px 0px;
     width: 100%;
 }
 li{
@@ -128,6 +128,11 @@ textarea::-webkit-scrollbar{
     position: absolute;
     right: 0;
     margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
 }
 .sendBtn ion-icon{
     font-size: 26px;

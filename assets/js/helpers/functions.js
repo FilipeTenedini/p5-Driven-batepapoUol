@@ -1,7 +1,7 @@
-function ggetData(){
+function getData(){
     const name = prompt('Qual seu nome?');
 
-    return {name: name}
+    return {name: name};
 }
 
 function seePvtMsgCondition(loggedUser, msg){
