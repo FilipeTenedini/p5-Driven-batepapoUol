@@ -1,3 +1,6 @@
+import { user, msgData, } from '../api/api.js';
+
+
 function getData(){
     const name = prompt('Qual seu nome?');
 
@@ -10,5 +13,22 @@ function seePvtMsgCondition(loggedUser, msg){
     } return false;
 }
 
+function scrollToLastMsg(){
+    const lastMsg = document.querySelector('ul').lastElementChild;
 
-export { getData, seePvtMsgCondition };
+    lastMsg.scrollIntoView();
+}
+
+function setMsgData(){
+    const msgText = document.querySelector('textarea').value;
+
+    msgData.from = user.name;
+    msgData.to = 'Todos';
+    msgData.text = msgText;
+    msgData.type = "message";
+}
+
+function clearTextArea(){
+    document.querySelector('textarea').value = '';
+}
+export { getData, seePvtMsgCondition, scrollToLastMsg, setMsgData, clearTextArea };

@@ -15,7 +15,9 @@
 }
 body{
     background-color: var(--bgColor);
+
 }
+
 header{
     width: 100vw;
     height: 80px;
@@ -27,6 +29,7 @@ header{
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.05);
     position: fixed;
     top: 0;
+    z-index: 99;
 }
 header .container{
     width: 100%;
@@ -52,10 +55,20 @@ header .container{
 }
 
 
-
-.chat ul{
-    margin: 106px 0px;
-    width: 100%;
+.chat{
+    height: 100vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.chat::-webkit-scrollbar{
+    display: none;
+}
+ul li:first-child{
+    margin-top: 106px;
+}
+ul li:last-child{
+    margin-bottom: 80px;
 }
 li{
     display: flex;
@@ -91,6 +104,7 @@ footer{
     -webkit-box-shadow: 0px -4px 6px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: 0px -4px 6px 0px rgba(0,0,0,0.05);
     box-shadow: 0px -4px 6px 0px rgba(0,0,0,0.05);
+    z-index: 99;
 }
 footer .container{
     width: 100%;
@@ -136,4 +150,15 @@ textarea::-webkit-scrollbar{
 }
 .sendBtn ion-icon{
     font-size: 26px;
+}
+
+@media (max-width: 625px){
+    .chat{
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .chat::-webkit-scrollbar{
+        display: none;
+    }
 }

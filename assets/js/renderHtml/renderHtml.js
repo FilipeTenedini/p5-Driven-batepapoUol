@@ -1,8 +1,8 @@
 import { user } from '../api/api.js';
-import { seePvtMsgCondition } from '../helpers/functions.js';
+import { seePvtMsgCondition, scrollToLastMsg } from '../helpers/functions.js';
 
 
-function statusMsg(msg){
+function renderStatusMsg(msg){
     return `
     <li class="statusMsg">
         <div class="hour">(<span>${msg.time}</span>)</div>
@@ -11,11 +11,11 @@ function statusMsg(msg){
     `;
 }
 
-function forAllMsg(msg){
+function renderForAllMsg(msg){
     return `
     <li class="toAllMsg">
         <div class="hour">(<span>${msg.time}</span>)</div>
-        <p><span class="name">${msg.from}</span> para <span class="name">${msg.to}</span>: <span class="text">Bom dia</span></p>
+        <p><span class="name">${msg.from}</span> para <span class="name">${msg.to}</span>: <span class="text">${msg.text}</span></p>
     </li>
     `;
 }
@@ -34,19 +34,23 @@ function renderMsgs(response){
     const mesages = response.data;
     const loggedUser = user.name;
 
-    for (let mesage of mesages){
-        const type = mesage.type;
+    msgList.innerHTML = '';
+    
+        for (let mesage of mesages){
+            const type = mesage.type;
 
-        if (type === 'private_message' && seePvtMsgCondition(loggedUser, mesage)){
-            msgList.innerHTML += renderPvtMsg(mesage);
+            if (type === 'private_message' && seePvtMsgCondition(loggedUser, mesage)){
+                msgList.innerHTML += renderPvtMsg(mesage);
+                
+            } else if (type === 'message'){
+                    msgList.innerHTML += renderForAllMsg(mesage);
+            } else{
+                    msgList.innerHTML += renderStatusMsg(mesage);
+            }
             
-        } else if (type === 'message'){
-                msgList.innerHTML += forAllMsg(mesage);
-        } else{
-                msgList.innerHTML += statusMsg(mesage);
         }
         
-    }
+    scrollToLastMsg();
 }
 
 
