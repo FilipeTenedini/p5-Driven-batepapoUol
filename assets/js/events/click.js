@@ -1,5 +1,5 @@
 import { apiRequests } from '../api/api.js';
-import { setMsgData, clearTextArea } from '../helpers/functions.js';
+import { setMsgData, clearTextArea, getData } from '../helpers/functions.js';
 
 document.querySelector('.sendBtn ion-icon').addEventListener('click',()=>{
 
@@ -8,5 +8,17 @@ document.querySelector('.sendBtn ion-icon').addEventListener('click',()=>{
     apiRequests.sendMsgs();
 
 });
+
+
+
+
+document.querySelector('.form-submit').addEventListener('click', (e)=> {
+    e.preventDefault();
+
+    getData();
+
+
+    apiRequests.userLogin();
+})
 
 export {};

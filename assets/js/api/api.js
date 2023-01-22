@@ -46,6 +46,7 @@ const apiFunctions = {
 
     setUserConfig: function setUserConfig(response){
         apiFunctions.ping();
+        document.querySelector('.modal').classList.add('invisible');
         apiFunctions.updateChat();
         apiRequests.viewMsgs();
     },
@@ -85,10 +86,6 @@ const apiFunctions = {
 
 };
 
-
-
-
-apiRequests.userLogin();
 
 
 export { user, apiRequests, msgData };

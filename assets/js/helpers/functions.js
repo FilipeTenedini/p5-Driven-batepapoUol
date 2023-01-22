@@ -2,7 +2,7 @@ import { user, msgData, } from '../api/api.js';
 
 
 function getData(){
-    const name = prompt('Qual seu nome?');
+    const name = document.querySelector('.user-name').value;
 
     return {name: name};
 }
