@@ -4,13 +4,20 @@ import { user, msgData, } from '../api/api.js';
 function getData(){
     const name = document.querySelector('.user-name').value;
 
-    return {name: name};
+    return {name};
+}
+
+function setLoading(){
+    document.querySelector('form').classList.add('invisible');
+    document.querySelector('.loading').classList.remove('invisible');
 }
 
 function seePvtMsgCondition(loggedUser, msg){
     if (loggedUser === msg.to || loggedUser === msg.from){
         return true;
-    } return false;
+    } else {
+        return false;
+    }
 }
 
 function scrollToLastMsg(){
@@ -22,8 +29,8 @@ function scrollToLastMsg(){
 function setMsgData(){
     const msgText = document.querySelector('textarea').value;
     const msgTo = document.querySelector('.checked .contact-name').innerHTML;
-    const thisType = document.querySelector('.selected').getAttribute('type')
-    
+    const thisType = document.querySelector('.selected').getAttribute('type');
+
     msgData.from = user.name;
     msgData.to = msgTo;
     msgData.text = msgText;
@@ -36,54 +43,62 @@ function clearTextArea(){
 
 function openMenu(){
     const section = document.querySelector('section');
+    const timeToOpenMenu = 100;
     section.classList.remove('invisible');
-    
+
     setTimeout(()=>{
         section.classList.add('section-visible');
         section.querySelector('.contacts-area').classList.add('contacts-area-visible');
-    },100)
+    }, timeToOpenMenu);
 }
 
 function closeMenu(){
     const section = document.querySelector('section');
-
+    const timeToCloseMenu = 500;
     section.classList.remove('section-visible');
     section.querySelector('.contacts-area').classList.remove('contacts-area-visible');
 
     setTimeout(()=>{
         section.classList.add('invisible');
-    }, 500);
+    }, timeToCloseMenu);
 }
 
 function changeMsgInfoView(){
-    const contactSelected = document.querySelector('.checked .contact-name').innerHTML;;
-    const msgType = document.querySelector('.selected').getAttribute('type');
     const msgInfo = document.querySelector('.msgInfos');
-    const msgTo = msgInfo.querySelectorAll('span')[0];
-    const msgSetter = msgInfo.querySelectorAll('span')[1];
+    const [msgTo, msgType] = msgInfo.querySelectorAll('span');
 
-    msgTo.innerHTML = contactSelected;
-    if(msgType === 'message'){
-        msgSetter.innerHTML = '(publicamente)'
+    msgTo.innerHTML = msgData.to;
+
+    if(msgData.type === 'message'){
+        msgType.innerHTML = '(publicamente)';
     }else{
-        msgSetter.innerHTML = '(reservadamente)'
+        msgType.innerHTML = '(reservadamente)';
     }
 }
 
 function changeSelectedContact(item){
     let contactSelected = document.querySelector('.checked');
 
-    contactSelected.querySelector('.checkmark').classList.toggle('invisible');
-    contactSelected.classList.toggle('checked');
+    if (contactSelected){
 
-    item.classList.toggle('checked');
-    item.querySelector('.checkmark').classList.toggle('invisible');
-
-    contactSelected = document.querySelector('.checked');
+        contactSelected.querySelector('.checkmark').classList.toggle('invisible');
+        contactSelected.classList.toggle('checked');
     
-    changeMsgInfoView()
-}
+        item.classList.toggle('checked');
+        item.querySelector('.checkmark').classList.toggle('invisible');
+        contactSelected = document.querySelector('.checked');
+        
+    }
+    else{
+        item.classList.add('checked')
+        item.querySelector('.checkmark').classList.toggle('invisible');
+        contactSelected = document.querySelector('.checked');
+    }
 
+    setMsgData();
+    changeMsgInfoView();
+    
+}
 
 function changeSelectedType(item){
     let typeSelected = document.querySelector('.selected');
@@ -95,11 +110,12 @@ function changeSelectedType(item){
     item.querySelector('.checkmark').classList.toggle('invisible');
 
     typeSelected = document.querySelector('.selected');
-
-    changeMsgInfoView()
+    setMsgData();
+    changeMsgInfoView();
 }
 
-export { getData, 
+export { getData,
+        setLoading,
         seePvtMsgCondition,
         scrollToLastMsg,
         setMsgData,

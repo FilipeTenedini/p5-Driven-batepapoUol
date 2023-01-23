@@ -1,5 +1,5 @@
 import { apiRequests } from '../api/api.js';
-import { setMsgData, clearTextArea, getData, openMenu, closeMenu, changeSelectedContact, changeSelectedType } from '../helpers/functions.js';
+import { setMsgData, setLoading, clearTextArea, getData, openMenu, closeMenu, changeSelectedContact, changeSelectedType } from '../helpers/functions.js';
 
 document.querySelector('.sendBtn ion-icon').addEventListener('click',()=>{
 
@@ -14,6 +14,9 @@ document.querySelector('.form-submit').addEventListener('click', (e)=> {
     e.preventDefault();
 
     getData();
+
+    setLoading();
+
     apiRequests.userLogin();
 });
 

@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'roboto';
+    font-family: 'roboto', 'arial';
 }
 :root{
     --hdrColor: #FFF;
@@ -75,7 +75,9 @@ form{
     border: none;
     border-radius: 9px;
 }
-
+.loading{
+    margin-top: -30px;
+}
 
 
 section{
@@ -142,7 +144,6 @@ section{
     color: var(--check);
     font-size: 14px;
     font-weight: 700;
-    right: 0;
     position: absolute;
     right: 10px;
 }
@@ -179,7 +180,6 @@ section{
     color: var(--check);
     font-size: 14px;
     font-weight: 700;
-    right: 0;
     position: absolute;
     right: 10px;
 }

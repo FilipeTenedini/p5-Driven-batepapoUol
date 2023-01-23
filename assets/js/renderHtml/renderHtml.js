@@ -8,16 +8,20 @@ function renderOnlineContacts(response){
 
     contactList.innerHTML = `
     <li class="checked" data-test="all">
-        <ion-icon name="people"></ion-icon><span class="contact-name">Todos</span><ion-icon class="checkmark" name="checkmark-outline"></ion-icon>
+        <ion-icon name="people"></ion-icon>
+        <span class="contact-name">Todos</span>
+        <ion-icon class="checkmark" name="checkmark-outline"></ion-icon>
     </li>
     `;
     
-    for (let i of onlineContacts){
+    for (const i of onlineContacts){
         contactList.innerHTML += `
         <li data-test="participant">
-            <ion-icon name="person-circle"></ion-icon><span class="contact-name">${i.name}</span><ion-icon data-test="check" class="checkmark invisible" name="checkmark-outline"></ion-icon>
+            <ion-icon name="person-circle"></ion-icon>
+            <span class="contact-name">${i.name}</span>
+            <ion-icon data-test="check" class="checkmark invisible" name="checkmark-outline"></ion-icon>
         </li>
-        `
+        `;
     }
 
     selectContact();
@@ -37,7 +41,9 @@ function renderForAllMsg(msg){
     return `
     <li class="toAllMsg" data-test="message">
         <div class="hour">(<span>${msg.time}</span>)</div>
-        <p><span class="name">${msg.from}</span> para <span class="name">${msg.to}</span>: <span class="text">${msg.text}</span></p>
+        <p>
+            <span class="name">${msg.from}</span> para <span class="name">${msg.to}</span>: <span class="text">${msg.text}</span>
+        </p>
     </li>
     `;
 }
@@ -46,7 +52,9 @@ function renderPvtMsg(msg){
     return `
    <li class="pvtMsg" data-test="message">
        <div class="hour">(<span>${msg.time}</span>)</div>
-       <p><span class="name">${msg.from}</span> reservadamente para <span class="name">${msg.to}</span>: <span class="text">${msg.text}</span></p>
+       <p>
+       <span class="name">${msg.from}</span> reservadamente para <span class="name">${msg.to}</span>: <span class="text">${msg.text}</span>
+       </p>
    </li>
   `;
 }
@@ -57,21 +65,21 @@ function renderMsgs(response){
     const loggedUser = user.name;
 
     msgList.innerHTML = '';
-    
-        for (let mesage of mesages){
+
+        for (const mesage of mesages){
             const type = mesage.type;
 
             if (type === 'private_message' && seePvtMsgCondition(loggedUser, mesage)){
                 msgList.innerHTML += renderPvtMsg(mesage);
-                
+
             } else if (type === 'message'){
                     msgList.innerHTML += renderForAllMsg(mesage);
             } else if (type === 'status'){
                     msgList.innerHTML += renderStatusMsg(mesage);
             }
-            
+
         }
-        
+
     scrollToLastMsg();
 }
 
