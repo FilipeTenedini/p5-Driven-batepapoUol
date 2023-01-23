@@ -63,10 +63,13 @@ function closeMenu(){
 
 function changeMsgInfoView(){
     const msgInfo = document.querySelector('.msgInfos');
+    const contact = document.querySelector('.checked')
+    const contactName = contact.querySelector('.contact-name').innerHTML
     const [msgTo, msgType] = msgInfo.querySelectorAll('span');
 
-    msgTo.innerHTML = msgData.to;
 
+    msgTo.innerHTML = contactName;
+    
     if(msgData.type === 'message'){
         msgType.innerHTML = '(publicamente)';
     }else{
@@ -85,12 +88,11 @@ function changeSelectedContact(item){
         item.classList.toggle('checked');
         item.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected = document.querySelector('.checked');
-    } else{
+    } else {
         item.classList.add('checked');
         item.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected = document.querySelector('.checked');
     }
-
     setMsgData();
     changeMsgInfoView();
 
@@ -119,6 +121,7 @@ export { getData,
         clearTextArea,
         openMenu,
         closeMenu,
+        changeMsgInfoView,
         changeSelectedContact,
         changeSelectedType
     };

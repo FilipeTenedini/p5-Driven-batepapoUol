@@ -30,10 +30,11 @@
     </main>
     <footer>
         <div class="container">
+            <div class="error invisible">Erro ao enviar mensagem.</div>
             <textarea data-test="input-message" type="text" placeholder="Escreva aqui..."></textarea>
             <button class="sendBtn"data-test="send-message"><ion-icon name="paper-plane-outline"></ion-icon></button>
             <div class="msgInfos" data-test="recipient">
-                Enviado para <span>Todos</span> <span>(publicamente)</span>
+                Enviando para <span class="toUser">Todos</span> <span>(publicamente)</span>
             </div>
         </div>
     </footer>
@@ -71,7 +72,7 @@
                 <div class="mode selected" type="message" data-test="public">
                     <ion-icon name="lock-open"></ion-icon>
                     <span>Público</span>
-                    <ion-icon data-test="check" class="checkmark" name="checkmark-outline"></ion-icon>
+                    <ion-icon data-test="check" class="checkmark checked" name="checkmark-outline"></ion-icon>
                 </div>
                 <div class="mode" type="private_message" data-test="private">
                     <ion-icon name="lock-closed"></ion-icon>

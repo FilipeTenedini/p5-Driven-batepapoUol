@@ -36,7 +36,7 @@ const apiRequests = {
         axios
         .post(`${BASE}/messages`, msgData)
         .then(apiRequests.viewMsgs)
-        .catch( (error) => console.log(error) );
+        .catch(apiFunctions.msgSendError);
     },
 
     getOnlineContacts: () => {
@@ -71,7 +71,7 @@ const apiFunctions = {
 
                 if (error.response.status === existentUserError){
                     alert('Nome de usuario já existe. Tente outro!');
-                    setTimeout(apiRequests.userLogin, timeToReload);
+                    setTimeout(window.location.reload(), timeToReload);
                 } else {
                     alert('ERROR USER AREA Ocorreu um errinho aqui do nosso lado, tente recarregar a página <3');
                 }
@@ -85,6 +85,22 @@ const apiFunctions = {
 
     loadMsgsFail: function loadMsgsFail(){
                     alert('MSG ERROR AREA Ocorreu um errinho no nosso servidor, por favor recarregue a página <3');
+    },
+
+    msgSendError: function msgSendError(e){
+        const error = document.querySelector('.error');
+        const timeToView = 100;
+        const timeToHidden = 2000;
+
+        error.classList.remove('invisible');
+        setTimeout(()=>{
+            error.style.opacity = '1'
+        }, timeToView);
+
+        setTimeout(()=>{
+            error.style.opacity = '0'
+        }, timeToHidden);
+        error.classList.add('invisible');        
     },
 
     updateChat: function updateChat(){

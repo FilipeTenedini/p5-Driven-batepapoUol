@@ -18,9 +18,11 @@
     --modalBtnTxt: #696969;
     --check: #28BB25;
     --msgInfos: #505050;
+    --errorBg: #F00;
 }
 body{
     background-color: var(--bgColor);
+    font-family: 'roboto', 'arial';
 }
 
 .modal{
@@ -289,8 +291,21 @@ footer .container{
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     position: relative;
+}
+.error{
+    background-color: var(--errorBg);
+    color: var(--statusMsg);
+    font-weight: 700;
+    height: 14px;
+    width: 100vw;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding: 3px 10px;
+    opacity: 0;
+    transition: all ease 1s ;
 }
 footer textarea{
     flex: 1;
@@ -300,6 +315,8 @@ footer textarea{
     font-size: 18px;
     font-weight: 400;
     line-height: 21px;
+    width: 100%;
+    resize: none;
 }
 textarea::-webkit-scrollbar{
     display: none;
@@ -321,6 +338,7 @@ textarea::placeholder{
     height: 24px;
     position: absolute;
     right: 0;
+    top: 20px;
     margin-right: 15px;
     display: flex;
     justify-content: center;
@@ -332,8 +350,22 @@ textarea::placeholder{
     font-size: 26px;
 }
 .msgInfos{
-    position: fixed;
-    bottom: 5px;
-    left: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    max-height: 20px;
     color: var(--msgInfos);
+}
+.toUser{
+    display: inline-block;
+    max-width: 100px;
+    max-height: 20px;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    margin: 0 3px;
+}
+.no-pointer-event{
+    pointer-events: none;
 }

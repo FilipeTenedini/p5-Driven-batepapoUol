@@ -1,5 +1,5 @@
 import { user } from '../api/api.js';
-import { seePvtMsgCondition, scrollToLastMsg } from '../helpers/functions.js';
+import { seePvtMsgCondition, scrollToLastMsg, changeMsgInfoView } from '../helpers/functions.js';
 import {selectContact, selectMsgType} from '../events/click.js';
 
 function renderOnlineContacts(response){
@@ -26,6 +26,7 @@ function renderOnlineContacts(response){
 
     selectContact();
     selectMsgType();
+    changeMsgInfoView();
 }
 
 function renderStatusMsg(msg){
