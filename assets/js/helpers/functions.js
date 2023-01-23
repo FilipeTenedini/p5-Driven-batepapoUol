@@ -15,7 +15,7 @@ function setLoading(){
 function seePvtMsgCondition(loggedUser, msg){
     if (loggedUser === msg.to || loggedUser === msg.from){
         return true;
-    }
+    } return false;
 }
 
 function scrollToLastMsg(){
@@ -85,9 +85,7 @@ function changeSelectedContact(item){
         item.classList.toggle('checked');
         item.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected = document.querySelector('.checked');
-        
-    }
-    else{
+    } else{
         item.classList.add('checked');
         item.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected = document.querySelector('.checked');
