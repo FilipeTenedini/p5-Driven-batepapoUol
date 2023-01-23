@@ -235,18 +235,18 @@ header .container{
 .chat::-webkit-scrollbar{
     display: none;
 }
-.chat ul li:first-child{
-    margin-top: 106px;
-}
-.chat ul li:last-child{
-    margin-bottom: 80px;
-}
 .chat ul li{
     display: flex;
     align-items: center;
     margin-bottom: 5px;
     min-height: 40px;
     padding: 5px;
+}
+.chat ul li:first-child{
+    margin-top: 106px;
+}
+.chat ul li:last-child{
+    margin-bottom: 80px;
 }
 .statusMsg{
     background-color: var(--statusMsg);
@@ -301,6 +301,9 @@ footer textarea{
     font-weight: 400;
     line-height: 21px;
 }
+textarea::-webkit-scrollbar{
+    display: none;
+}
 textarea:focus{
     border:none;
     outline: none;
@@ -312,9 +315,7 @@ textarea::placeholder{
     font-size: 18px;
     line-height: 21px;
 }
-textarea::-webkit-scrollbar{
-    display: none;
-}
+
 .sendBtn{
     width: 27px;
     height: 24px;

@@ -15,8 +15,6 @@ function setLoading(){
 function seePvtMsgCondition(loggedUser, msg){
     if (loggedUser === msg.to || loggedUser === msg.from){
         return true;
-    } else {
-        return false;
     }
 }
 
@@ -83,21 +81,21 @@ function changeSelectedContact(item){
 
         contactSelected.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected.classList.toggle('checked');
-    
+
         item.classList.toggle('checked');
         item.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected = document.querySelector('.checked');
         
     }
     else{
-        item.classList.add('checked')
+        item.classList.add('checked');
         item.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected = document.querySelector('.checked');
     }
 
     setMsgData();
     changeMsgInfoView();
-    
+
 }
 
 function changeSelectedType(item){
@@ -110,6 +108,7 @@ function changeSelectedType(item){
     item.querySelector('.checkmark').classList.toggle('invisible');
 
     typeSelected = document.querySelector('.selected');
+
     setMsgData();
     changeMsgInfoView();
 }

@@ -13,7 +13,7 @@ function renderOnlineContacts(response){
         <ion-icon class="checkmark" name="checkmark-outline"></ion-icon>
     </li>
     `;
-    
+
     for (const i of onlineContacts){
         contactList.innerHTML += `
         <li data-test="participant">

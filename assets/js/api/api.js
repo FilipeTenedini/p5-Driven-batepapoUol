@@ -61,7 +61,7 @@ const apiFunctions = {
     },
 
     ping: function ping (){
-                    const timeToConfirmStatus = 5000; 
+                    const timeToConfirmStatus = 5000;
                     setInterval(apiRequests.keepLoggedIn, timeToConfirmStatus);
     },
 
