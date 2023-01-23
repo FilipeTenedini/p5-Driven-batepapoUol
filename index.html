@@ -17,7 +17,7 @@
             <div class="logo">
                 <img src="./assets/images/logo 1.png" alt="">
             </div>
-            <div class="people"><ion-icon name="people-sharp" class="menu"></ion-icon></div>
+            <button class="people" data-test="open-participants"><ion-icon name="people-sharp" class="menu"></ion-icon></button>
         </div>
     </header>
     <main class="chat">
@@ -29,6 +29,7 @@
         <div class="container">
             <textarea type="text" placeholder="Escreva aqui..."></textarea>
             <button class="sendBtn"><ion-icon name="paper-plane-outline"></ion-icon></button>
+            <div class="msgInfos" data-test="recipient">Enviado para <span>Todos</span> <span>(publicamente)</span></div>
         </div>
     </footer>
 
@@ -37,8 +38,8 @@
             <img src="./assets/images/logo 1.png" alt="">
         </div>
         <form action="get">
-            <input type="text" placeholder="Digite seu nome" class="user-name">
-            <input type="submit" value="Entrar" class="form-submit">
+            <input type="text" placeholder="Digite seu nome" class="user-name" data-test="input-name">
+            <input type="submit" value="Entrar" class="form-submit" data-test="send-name">
         </form>
         <div class="loading">
             <img src="" alt="">
@@ -46,7 +47,7 @@
     </div>
 
     <section class="invisible">
-        <div class="contactsbg">...</div>
+        <div class="contactsbg" data-test="overlay"></div>
         <div class="contacts-area">
             <div class="contacts-header">
                 <p>
@@ -55,20 +56,18 @@
             </div>
             <div class="contacts">
                 <ul>
-                    <li>
-                        <ion-icon name="people"></ion-icon><span class="contact-name">Todos</span><ion-icon name="checkmark-outline"></ion-icon>
-                    </li>
+
                 </ul>
             </div>
             <div class="visible-choice">
                 <p class="visible-choice--header">
                     Escolha a visibilidade:
                 </p>
-                <div class="mode public">
-                    <ion-icon name="lock-open"></ion-icon><span>Público</span><ion-icon name="checkmark-outline"></ion-icon>
+                <div class="mode selected" type="message" data-test="public">
+                    <ion-icon name="lock-open"></ion-icon><span>Público</span><ion-icon data-test="check" class="checkmark" name="checkmark-outline"></ion-icon>
                 </div>
-                <div class="mode private">
-                    <ion-icon name="lock-closed"></ion-icon><span>Reservadamente</span><ion-icon class="invisible" name="checkmark-outline"></ion-icon>
+                <div class="mode" type="private_message" data-test="private">
+                    <ion-icon name="lock-closed"></ion-icon><span>Reservadamente</span><ion-icon data-test="check" class="checkmark invisible" name="checkmark-outline"></ion-icon>
                 </div>
             </div>
         </div>

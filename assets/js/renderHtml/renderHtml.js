@@ -1,23 +1,32 @@
 import { user } from '../api/api.js';
 import { seePvtMsgCondition, scrollToLastMsg } from '../helpers/functions.js';
-
+import {selectContact, selectMsgType} from '../events/click.js';
 
 function renderOnlineContacts(response){
     const onlineContacts = response.data;
     const contactList = document.querySelector('.contacts ul');
 
+    contactList.innerHTML = `
+    <li class="checked" data-test="all">
+        <ion-icon name="people"></ion-icon><span class="contact-name">Todos</span><ion-icon class="checkmark" name="checkmark-outline"></ion-icon>
+    </li>
+    `;
+    
     for (let i of onlineContacts){
         contactList.innerHTML += `
-        <li>
-            <ion-icon name="person-circle"></ion-icon><span class="contact-name">${i.name}</span><ion-icon class="invisible" name="checkmark-outline"></ion-icon>
+        <li data-test="participant">
+            <ion-icon name="person-circle"></ion-icon><span class="contact-name">${i.name}</span><ion-icon data-test="check" class="checkmark invisible" name="checkmark-outline"></ion-icon>
         </li>
         `
     }
+
+    selectContact();
+    selectMsgType();
 }
 
 function renderStatusMsg(msg){
     return `
-    <li class="statusMsg">
+    <li class="statusMsg" data-test="message">
         <div class="hour">(<span>${msg.time}</span>)</div>
         <p><span class="name">${msg.from}</span> ${msg.text}</p>
     </li>
@@ -26,7 +35,7 @@ function renderStatusMsg(msg){
 
 function renderForAllMsg(msg){
     return `
-    <li class="toAllMsg">
+    <li class="toAllMsg" data-test="message">
         <div class="hour">(<span>${msg.time}</span>)</div>
         <p><span class="name">${msg.from}</span> para <span class="name">${msg.to}</span>: <span class="text">${msg.text}</span></p>
     </li>
@@ -35,7 +44,7 @@ function renderForAllMsg(msg){
 
 function renderPvtMsg(msg){
     return `
-   <li class="pvtMsg">
+   <li class="pvtMsg" data-test="message">
        <div class="hour">(<span>${msg.time}</span>)</div>
        <p><span class="name">${msg.from}</span> reservadamente para <span class="name">${msg.to}</span>: <span class="text">${msg.text}</span></p>
    </li>
@@ -57,7 +66,7 @@ function renderMsgs(response){
                 
             } else if (type === 'message'){
                     msgList.innerHTML += renderForAllMsg(mesage);
-            } else{
+            } else if (type === 'status'){
                     msgList.innerHTML += renderStatusMsg(mesage);
             }
             

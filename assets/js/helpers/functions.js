@@ -21,11 +21,13 @@ function scrollToLastMsg(){
 
 function setMsgData(){
     const msgText = document.querySelector('textarea').value;
-
+    const msgTo = document.querySelector('.checked .contact-name').innerHTML;
+    const thisType = document.querySelector('.selected').getAttribute('type')
+    
     msgData.from = user.name;
-    msgData.to = 'Todos';
+    msgData.to = msgTo;
     msgData.text = msgText;
-    msgData.type = "message";
+    msgData.type = thisType;
 }
 
 function clearTextArea(){
@@ -53,6 +55,49 @@ function closeMenu(){
     }, 500);
 }
 
+function changeMsgInfoView(){
+    const contactSelected = document.querySelector('.checked .contact-name').innerHTML;;
+    const msgType = document.querySelector('.selected').getAttribute('type');
+    const msgInfo = document.querySelector('.msgInfos');
+    const msgTo = msgInfo.querySelectorAll('span')[0];
+    const msgSetter = msgInfo.querySelectorAll('span')[1];
+
+    msgTo.innerHTML = contactSelected;
+    if(msgType === 'message'){
+        msgSetter.innerHTML = '(publicamente)'
+    }else{
+        msgSetter.innerHTML = '(reservadamente)'
+    }
+}
+
+function changeSelectedContact(item){
+    let contactSelected = document.querySelector('.checked');
+
+    contactSelected.querySelector('.checkmark').classList.toggle('invisible');
+    contactSelected.classList.toggle('checked');
+
+    item.classList.toggle('checked');
+    item.querySelector('.checkmark').classList.toggle('invisible');
+
+    contactSelected = document.querySelector('.checked');
+    
+    changeMsgInfoView()
+}
+
+
+function changeSelectedType(item){
+    let typeSelected = document.querySelector('.selected');
+
+    typeSelected.querySelector('.checkmark').classList.toggle('invisible');
+    typeSelected.classList.toggle('selected');
+
+    item.classList.toggle('selected');
+    item.querySelector('.checkmark').classList.toggle('invisible');
+
+    typeSelected = document.querySelector('.selected');
+
+    changeMsgInfoView()
+}
 
 export { getData, 
         seePvtMsgCondition,
@@ -60,5 +105,7 @@ export { getData,
         setMsgData,
         clearTextArea,
         openMenu,
-        closeMenu
+        closeMenu,
+        changeSelectedContact,
+        changeSelectedType
     };

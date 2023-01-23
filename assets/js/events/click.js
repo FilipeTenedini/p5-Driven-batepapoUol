@@ -1,5 +1,5 @@
 import { apiRequests } from '../api/api.js';
-import { setMsgData, clearTextArea, getData, openMenu, closeMenu } from '../helpers/functions.js';
+import { setMsgData, clearTextArea, getData, openMenu, closeMenu, changeSelectedContact, changeSelectedType } from '../helpers/functions.js';
 
 document.querySelector('.sendBtn ion-icon').addEventListener('click',()=>{
 
@@ -22,7 +22,24 @@ document.querySelector('.menu').addEventListener('click', openMenu);
 document.querySelector('.contactsbg').addEventListener('click', closeMenu);
 
 
+function selectContact(){
+    const contactsList = document.querySelectorAll('.contacts ul li');
 
+    contactsList.forEach((item)=>{
+        item.addEventListener('click', ()=>{
+            changeSelectedContact(item);
+        });
+    });
+}
 
+function selectMsgType(){
+    const msgTypesList = document.querySelectorAll('.visible-choice .mode');
 
-export {};
+    msgTypesList.forEach((item)=>{
+        item.addEventListener('click', ()=>{
+            changeSelectedType(item);
+        });
+    });
+}
+
+export { selectContact, selectMsgType };

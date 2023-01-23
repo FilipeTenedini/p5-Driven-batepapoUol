@@ -17,6 +17,7 @@
     --modalBtn: #E7E7E7;
     --modalBtnTxt: #696969;
     --check: #28BB25;
+    --msgInfos: #505050;
 }
 body{
     background-color: var(--bgColor);
@@ -147,7 +148,7 @@ section{
 }
 .contact-name{
     font-size: 16px;
-    max-width: 50px;
+    max-width: 170px;
     max-height: 20px;
     white-space: nowrap;
     overflow: hidden; 
@@ -211,6 +212,10 @@ header .container{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.people{
+    background-color: transparent;
+    border: none;
 }
 .logo img{
     width: 100%;
@@ -325,4 +330,9 @@ textarea::-webkit-scrollbar{
 .sendBtn ion-icon{
     font-size: 26px;
 }
-
+.msgInfos{
+    position: fixed;
+    bottom: 5px;
+    left: 10px;
+    color: var(--msgInfos);
+}
