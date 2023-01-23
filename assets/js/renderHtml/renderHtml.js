@@ -2,6 +2,19 @@ import { user } from '../api/api.js';
 import { seePvtMsgCondition, scrollToLastMsg } from '../helpers/functions.js';
 
 
+function renderOnlineContacts(response){
+    const onlineContacts = response.data;
+    const contactList = document.querySelector('.contacts ul');
+
+    for (let i of onlineContacts){
+        contactList.innerHTML += `
+        <li>
+            <ion-icon name="person-circle"></ion-icon><span class="contact-name">${i.name}</span><ion-icon class="invisible" name="checkmark-outline"></ion-icon>
+        </li>
+        `
+    }
+}
+
 function renderStatusMsg(msg){
     return `
     <li class="statusMsg">
@@ -56,4 +69,4 @@ function renderMsgs(response){
 
 
 
-export { renderMsgs };
+export { renderMsgs, renderOnlineContacts };

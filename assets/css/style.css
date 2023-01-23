@@ -16,6 +16,7 @@
     --detailGrey: #D7D7D7;
     --modalBtn: #E7E7E7;
     --modalBtnTxt: #696969;
+    --check: #28BB25;
 }
 body{
     background-color: var(--bgColor);
@@ -74,6 +75,115 @@ form{
     border-radius: 9px;
 }
 
+
+
+section{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: all ease 1s;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.contactsbg{
+    flex: 1;
+    height: 100%;
+}
+.section-visible{
+    opacity: 1;
+}
+.contacts-area{
+    background-color: var(--modalBg);
+    width: 259px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: all ease 1s;
+    transform: translateX(100vw);
+
+}
+.contacts-area-visible{
+    transform: translateX(0);
+}
+.contacts-header p{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px 45px;
+    line-height: 18px;
+}
+.contacts ul{
+    max-height: 300px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+.contacts ul::-webkit-scrollbar{
+    display: none;
+}
+.contacts li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    position: relative;
+}
+.contacts ion-icon{
+    font-size: 23px;
+    margin-left: 17px;
+    margin-right: 8px;
+
+}
+.contacts ion-icon:last-child{
+    color: var(--check);
+    font-size: 14px;
+    font-weight: 700;
+    right: 0;
+    position: absolute;
+    right: 10px;
+}
+.contact-name{
+    font-size: 16px;
+    max-width: 50px;
+    max-height: 20px;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.visible-choice p{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px 45px;
+    line-height: 18px;
+}
+.mode{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.visible-choice span{
+    font-weight: 16px;
+}
+.visible-choice ion-icon{
+    font-size: 23px;
+    margin-left: 17px;
+    margin-right: 8px;
+
+}
+.visible-choice ion-icon:last-child{
+    color: var(--check);
+    font-size: 14px;
+    font-weight: 700;
+    right: 0;
+    position: absolute;
+    right: 10px;
+}
+
+
 header{
     width: 100vw;
     height: 80px;
@@ -120,17 +230,18 @@ header .container{
 .chat::-webkit-scrollbar{
     display: none;
 }
-ul li:first-child{
+.chat ul li:first-child{
     margin-top: 106px;
 }
-ul li:last-child{
+.chat ul li:last-child{
     margin-bottom: 80px;
 }
-li{
+.chat ul li{
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-    height: 40px;
+    min-height: 40px;
+    padding: 5px;
 }
 .statusMsg{
     background-color: var(--statusMsg);
@@ -145,6 +256,11 @@ li{
     margin: 0 5px;
     font-size: 14px;
     color: var(--hourColor);
+
+}
+li p{
+    word-break: break-all;
+    
 }
 .name{
     color: var(--text);

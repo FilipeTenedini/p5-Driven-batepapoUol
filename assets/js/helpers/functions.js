@@ -14,7 +14,7 @@ function seePvtMsgCondition(loggedUser, msg){
 }
 
 function scrollToLastMsg(){
-    const lastMsg = document.querySelector('ul').lastElementChild;
+    const lastMsg = document.querySelector('.chat ul').lastElementChild;
 
     lastMsg.scrollIntoView();
 }
@@ -31,4 +31,34 @@ function setMsgData(){
 function clearTextArea(){
     document.querySelector('textarea').value = '';
 }
-export { getData, seePvtMsgCondition, scrollToLastMsg, setMsgData, clearTextArea };
+
+function openMenu(){
+    const section = document.querySelector('section');
+    section.classList.remove('invisible');
+    
+    setTimeout(()=>{
+        section.classList.add('section-visible');
+        section.querySelector('.contacts-area').classList.add('contacts-area-visible');
+    },100)
+}
+
+function closeMenu(){
+    const section = document.querySelector('section');
+
+    section.classList.remove('section-visible');
+    section.querySelector('.contacts-area').classList.remove('contacts-area-visible');
+
+    setTimeout(()=>{
+        section.classList.add('invisible');
+    }, 500);
+}
+
+
+export { getData, 
+        seePvtMsgCondition,
+        scrollToLastMsg,
+        setMsgData,
+        clearTextArea,
+        openMenu,
+        closeMenu
+    };

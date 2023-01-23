@@ -1,5 +1,5 @@
 import { getData } from '../helpers/functions.js';
-import { renderMsgs } from '../renderHtml/renderHtml.js';
+import { renderMsgs, renderOnlineContacts } from '../renderHtml/renderHtml.js';
 import {} from '../events/click.js';
 
 const BASE = "https://mock-api.driven.com.br/api/v6/uol";
@@ -37,6 +37,13 @@ const apiRequests = {
         .post(`${BASE}/messages`, msgData)
         .then(apiRequests.viewMsgs)
         .catch( (error) => console.log(error) );
+    },
+
+    getOnlineContacts: () => {
+        axios
+        .get(`${BASE}/participants`)
+        .then(renderOnlineContacts)
+        .catch((e)=>console.log(e))
     }
 
 };
@@ -49,6 +56,8 @@ const apiFunctions = {
         document.querySelector('.modal').classList.add('invisible');
         apiFunctions.updateChat();
         apiRequests.viewMsgs();
+        apiRequests.getOnlineContacts();
+        apiFunctions.updateOnlineContacts();
     },
 
     ping: function ping (){
@@ -81,8 +90,13 @@ const apiFunctions = {
     updateChat: function updateChat(response){
         const timeToUpdateChatMsgs = 3000;
         setInterval(apiRequests.viewMsgs, timeToUpdateChatMsgs);
-    }
+    },
 
+    updateOnlineContacts: function updateOnlineContacts(){
+        const timeToGetOnlineContacts = 10000;
+        
+        setInterval(apiRequests.getOnlineContacts, timeToGetOnlineContacts);
+    }
 
 };
 

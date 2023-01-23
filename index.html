@@ -17,14 +17,14 @@
             <div class="logo">
                 <img src="./assets/images/logo 1.png" alt="">
             </div>
-            <div class="people"><ion-icon name="people-sharp"></ion-icon></div>
+            <div class="people"><ion-icon name="people-sharp" class="menu"></ion-icon></div>
         </div>
     </header>
-    <div class="chat">
+    <main class="chat">
         <ul>
             
         </ul>
-    </div>
+    </main>
     <footer>
         <div class="container">
             <textarea type="text" placeholder="Escreva aqui..."></textarea>
@@ -40,12 +40,39 @@
             <input type="text" placeholder="Digite seu nome" class="user-name">
             <input type="submit" value="Entrar" class="form-submit">
         </form>
-
         <div class="loading">
             <img src="" alt="">
         </div>
-
     </div>
+
+    <section class="invisible">
+        <div class="contactsbg">...</div>
+        <div class="contacts-area">
+            <div class="contacts-header">
+                <p>
+                    Escolha um contato para enviar mensagem:
+                </p>
+            </div>
+            <div class="contacts">
+                <ul>
+                    <li>
+                        <ion-icon name="people"></ion-icon><span class="contact-name">Todos</span><ion-icon name="checkmark-outline"></ion-icon>
+                    </li>
+                </ul>
+            </div>
+            <div class="visible-choice">
+                <p class="visible-choice--header">
+                    Escolha a visibilidade:
+                </p>
+                <div class="mode public">
+                    <ion-icon name="lock-open"></ion-icon><span>Público</span><ion-icon name="checkmark-outline"></ion-icon>
+                </div>
+                <div class="mode private">
+                    <ion-icon name="lock-closed"></ion-icon><span>Reservadamente</span><ion-icon class="invisible" name="checkmark-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
