@@ -241,16 +241,9 @@ Esta requisição retornará um array de objetos no formato:
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - HTML e CSS
-- JavaScript
+- JavaScript Vanilla
 
 
 <h1 id="Aprendizados">🧠 Aprendizados</h1>
 
-- Arrays
-- Loops
-  - While and for
-- Insert HTML via JS using Loops and innerHTML with template strings.
-- remove & add Attributes
-- setTimeout & setInterval
-  - The most important functions of this project.
-  - With them I control the time of flipped cards, the time when you're playing the game and apply pointer-events: none; to the flipped cards
+- Em construção
