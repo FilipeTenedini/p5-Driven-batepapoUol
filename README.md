@@ -131,7 +131,7 @@ Entrar na sala
 - Para entrar na sala, deve-se enviar ao servidor o nome do usuário. Para isso, envie uma requisição `POST` para a URL:
     
     ```jsx
-    https://mock-api.driven.com.br/api/v6/uol[/participants](https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants) 
+    https://mock-api.driven.com.br/api/v6/uol/participants
     ```
     
 - Enviando um objeto no formato:
@@ -182,24 +182,24 @@ Buscar mensagens
     
 - A resposta será um array de objetos, como o seguinte:
     
-    ```jsx
-    [
-    	{
-    		from: "João",
-    		to: "Todos",
-    		text: "entra na sala...",
-    		type: "status",
-    		time: "08:01:17"
-    	},
-    	{
-    		from: "João",
-    		to: "Todos",
-    		text: "Bom dia",
-    		type: "message",
-    		time: "08:02:50"
-    	},
-    ]
-    ```
+```jsx
+[
+  {
+    from: "João",
+    to: "Todos",
+    text: "entra na sala...",
+    type: "status",
+    time: "08:01:17"
+  },
+  {
+    from: "João",
+    to: "Todos",
+    text: "Bom dia",
+    type: "message",
+    time: "08:02:50"
+  },
+]
+```
     
 - Nos objetos, o campo `type` identifica o tipo da mensagem. Existem os seguintes valores:
     - `status`: mensagem de estado, como entrou ou saiu da sala;
@@ -207,6 +207,7 @@ Buscar mensagens
     - `private_message`: mensagem particular.
 
 </details>
+  
 <details>
 <summary>    
 Enviar mensagens
@@ -217,24 +218,47 @@ Enviar mensagens
     ```jsx
     https://mock-api.driven.com.br/api/v6/uol/messages
     ```
-    
+  
 - Nesta requisição, você deve enviar um objeto como o seguinte:
-
-</details>
+  
+  ```jsx
+  {
+	from: "nome do usuário",
+	to: "nome do destinatário (Todos se não for um específico)",
+	text: "mensagem digitada",
+	type: "message" // ou "private_message" para o bônus
+  }
+  
+  ```
+  
+</details>    
 <details>
 <summary>    
 BÔNUS (opcional): Buscar participantes
 </summary>
 
-Para buscar a lista de participantes, envie uma requisição `GET` para a URL:
+- Para buscar a lista de participantes, envie uma requisição `GET` para a URL:
 
 ```jsx
 https://mock-api.driven.com.br/api/v6/uol/participants
 ```
-
-Esta requisição retornará um array de objetos no formato:
-
+  
+ - Esta requisição retornará um array de objetos no formato:
+  
+```jsx
+[
+  {
+    name: "João"
+},
+  {
+    name: "Maria"
+  }
+]
+```
+  
 </details>
+  </details>
+
 
 <h1 id="Tecnologias">🚀 Tecnologias</h1>
 
