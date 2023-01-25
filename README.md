@@ -13,8 +13,11 @@
 </p>
 <br><br>
 
+<div align="center">
+	
 ![image](https://user-images.githubusercontent.com/105571583/214379174-b04b5645-f66b-465e-b10b-42aaedc0687b.png)
-
+	
+</div>
 
 <h1 id="Projeto"> 💻 Projeto</h1>
 
