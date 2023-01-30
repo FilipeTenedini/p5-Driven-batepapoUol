@@ -273,7 +273,10 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <h1 id="Aprendizados">🧠 Aprendizados</h1>
 
-- Em construção
+- Requisição a API
+	- Pude aprender como renderizar dados trazidos do servidor bem como enviar dados para o servidor
+	- Utiizei a biblioteca axios e estudei sobre fetch.
+- Emmet HTML
 
 
  <h1 id="avaliacao">📚 Avaliação da Driven do meu Projeto</h1>
