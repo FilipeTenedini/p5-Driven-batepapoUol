@@ -274,3 +274,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 <h1 id="Aprendizados">🧠 Aprendizados</h1>
 
 - Em construção
+
+
+ <h1 id="avaliacao">📚 Avaliação da Driven do meu Projeto</h1>
+  <div align="center">
+  
+ ![image](https://user-images.githubusercontent.com/105571583/215371346-af4d4d95-bf5b-48ba-bd56-bb6af2e572e7.png)
+  
+  </div>
