@@ -9,7 +9,6 @@ document.querySelector('.sendBtn ion-icon').addEventListener('click',()=>{
 
 });
 
-
 document.querySelector('.form-submit').addEventListener('click', (e)=> {
     e.preventDefault();
 

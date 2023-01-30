@@ -63,8 +63,8 @@ function closeMenu(){
 
 function changeMsgInfoView(){
     const msgInfo = document.querySelector('.msgInfos');
-    const contact = document.querySelector('.checked')
-    const contactName = contact.querySelector('.contact-name').innerHTML
+    const contact = document.querySelector('.checked');
+    const contactName = contact.querySelector('.contact-name').innerHTML;
     const [msgTo, msgType] = msgInfo.querySelectorAll('span');
 
 
@@ -72,8 +72,18 @@ function changeMsgInfoView(){
     
     if(msgData.type === 'message'){
         msgType.innerHTML = '(publicamente)';
-    }else{
+    } else {
         msgType.innerHTML = '(reservadamente)';
+    }
+}
+
+function defineMode(){
+    const contactOption = document.querySelector('.checked').querySelector('span').innerHTML;
+    const pvtMode = document.querySelector('.mode.pvt')
+    if (contactOption === 'Todos'){
+        pvtMode.classList.add('hidden');
+    } else {
+        pvtMode.classList.remove('hidden');
     }
 }
 
@@ -93,6 +103,7 @@ function changeSelectedContact(item){
         item.querySelector('.checkmark').classList.toggle('invisible');
         contactSelected = document.querySelector('.checked');
     }
+    defineMode()
     setMsgData();
     changeMsgInfoView();
 
@@ -109,6 +120,7 @@ function changeSelectedType(item){
 
     typeSelected = document.querySelector('.selected');
 
+    defineMode();
     setMsgData();
     changeMsgInfoView();
 }
@@ -121,6 +133,7 @@ export { getData,
         clearTextArea,
         openMenu,
         closeMenu,
+        defineMode,
         changeMsgInfoView,
         changeSelectedContact,
         changeSelectedType

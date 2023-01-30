@@ -15,28 +15,71 @@ const apiRequests = {
 
         axios
         .post(`${BASE}/participants`, user)
-        .then(apiFunctions.setUserConfig)
-        .catch(apiFunctions.newLogin);
+        .then(()=>{
+            const timeToConfirmStatus = 5000;
+            setInterval(apiRequests.keepLoggedIn, timeToConfirmStatus);
+            
+            document.querySelector('.modal').classList.add('invisible');
+
+            const timeToUpdateChatMsgs = 3000;
+            setInterval(apiRequests.viewMsgs, timeToUpdateChatMsgs);
+
+            const timeToGetOnlineContacts = 10000;
+            setInterval(apiRequests.getOnlineContacts, timeToGetOnlineContacts);
+
+            apiRequests.viewMsgs();
+            apiRequests.getOnlineContacts();
+        })
+        .catch(()=>{
+            const existentUserError = 400;
+            const timeToReload = 1000;
+
+            if (error.response.status === existentUserError){
+                alert('Nome de usuario já existe. Tente outro!');
+                setTimeout(window.location.reload(), timeToReload);
+            } else {
+                alert('Ocorreu um errinho aqui. A culpa foi nossa, apenas tente recarregar a página <3');
+            }
+        });
     },
 
     keepLoggedIn: () => {
         axios
         .post(`${BASE}/status`, user)
-        .catch(apiFunctions.logoffUser);
+        .catch(()=>{
+            window.confirm('Usuário deslogado.');
+            window.location.reload();
+        });
     },
 
     viewMsgs: () => {
         axios
         .get(`${BASE}/messages`)
         .then(renderMsgs)
-        .catch(apiFunctions.loadMsgsFail);
+        .catch(()=>{
+            alert('Ocorreu um errinho no nosso servidor. Por favor recarregue a página <3')
+        });
     },
 
     sendMsgs: () => {
         axios
         .post(`${BASE}/messages`, msgData)
         .then(apiRequests.viewMsgs)
-        .catch(apiFunctions.msgSendError);
+        .catch(()=>{
+            const error = document.querySelector('.error');
+            const timeToView = 100;
+            const timeToHidden = 2000;
+
+            error.classList.remove('invisible');
+            setTimeout(()=>{
+                error.style.opacity = '1'
+            }, timeToView);
+
+            setTimeout(()=>{
+                error.style.opacity = '0'
+            }, timeToHidden);
+            error.classList.add('invisible');        
+        });
     },
 
     getOnlineContacts: () => {
@@ -47,75 +90,5 @@ const apiRequests = {
     }
 
 };
-
-
-const apiFunctions = {
-
-    setUserConfig: function setUserConfig(){
-        apiFunctions.ping();
-        document.querySelector('.modal').classList.add('invisible');
-        apiFunctions.updateChat();
-        apiRequests.viewMsgs();
-        apiRequests.getOnlineContacts();
-        apiFunctions.updateOnlineContacts();
-    },
-
-    ping: function ping (){
-                    const timeToConfirmStatus = 5000;
-                    setInterval(apiRequests.keepLoggedIn, timeToConfirmStatus);
-    },
-
-    newLogin: function newLogin(error){
-                const existentUserError = 400;
-                const timeToReload = 1000;
-
-                if (error.response.status === existentUserError){
-                    alert('Nome de usuario já existe. Tente outro!');
-                    setTimeout(window.location.reload(), timeToReload);
-                } else {
-                    alert('ERROR USER AREA Ocorreu um errinho aqui do nosso lado, tente recarregar a página <3');
-                }
-
-    },
-
-    logoffUser: function logoffUser(){
-                    window.confirm('Usuário deslogado.');
-                    window.location.reload();
-    },
-
-    loadMsgsFail: function loadMsgsFail(){
-                    alert('MSG ERROR AREA Ocorreu um errinho no nosso servidor, por favor recarregue a página <3');
-    },
-
-    msgSendError: function msgSendError(e){
-        const error = document.querySelector('.error');
-        const timeToView = 100;
-        const timeToHidden = 2000;
-
-        error.classList.remove('invisible');
-        setTimeout(()=>{
-            error.style.opacity = '1'
-        }, timeToView);
-
-        setTimeout(()=>{
-            error.style.opacity = '0'
-        }, timeToHidden);
-        error.classList.add('invisible');        
-    },
-
-    updateChat: function updateChat(){
-        const timeToUpdateChatMsgs = 3000;
-        setInterval(apiRequests.viewMsgs, timeToUpdateChatMsgs);
-    },
-
-    updateOnlineContacts: function updateOnlineContacts(){
-        const timeToGetOnlineContacts = 10000;
-
-        setInterval(apiRequests.getOnlineContacts, timeToGetOnlineContacts);
-    }
-
-};
-
-
 
 export { user, apiRequests, msgData };
